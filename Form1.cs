@@ -1,4 +1,5 @@
 using MySql.Data.MySqlClient;
+using System.Data;
 using MySqlX.XDevAPI;
 using Org.BouncyCastle.Asn1.Cms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -18,6 +19,7 @@ namespace Controle_de_Estoque_TI
             AtualizarTotalItens();
             AtualizarItensDeEstoqueBaixo();
             AtualizarItensDeCategoriaDiferente();
+            CarregarDadosItensCadastrados();
 
 
 
@@ -206,6 +208,7 @@ namespace Controle_de_Estoque_TI
         {
             MessageBox.Show(CadastrarNovoItem());
             ApagarCamposCadastro();
+            CarregarDadosItensCadastrados();
         }
 
         private void ApagarCamposCadastro()
@@ -318,6 +321,73 @@ namespace Controle_de_Estoque_TI
                 {
                     MessageBox.Show("Erro ao conectar com banco de dados: " + ex.Message);
                 }
+            }
+        }
+
+        public void CarregarDadosItensCadastrados()
+        {
+            try
+            {
+                using (MySqlConnection conexao = conexaoBD.GetConnection())
+                {
+                    string query = "select id,nome,categoria,status,quantidade,quantidade_minima from Item;";
+                    using (MySqlCommand cmd = new MySqlCommand(query, conexao))
+                    {
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                dataGridView3.Rows.Add(
+                                    reader["id"],
+                                    reader["nome"],
+                                    reader["categoria"],
+                                    Convert.ToInt32(reader["status"]),
+                                    reader["quantidade"],
+                                    reader["quantidade_minima"]
+                                    );
+                            }
+                        }
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void Editar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (MySqlConnection conexao = conexaoBD.GetConnection())
+                {
+                    string query = "update Item set ";
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void Excluir_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (MySqlConnection conexao = conexaoBD.GetConnection())
+                {
+                    string query = "delete";
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }

@@ -62,12 +62,6 @@
             itensEstoque = new TabPage();
             itensCadastrados = new GroupBox();
             dataGridView3 = new DataGridView();
-            nomeCadastro = new DataGridViewTextBoxColumn();
-            CategoriaCadastro = new DataGridViewTextBoxColumn();
-            quantidadeCadastro = new DataGridViewTextBoxColumn();
-            minimaCadastro = new DataGridViewTextBoxColumn();
-            LocalCadastro = new DataGridViewTextBoxColumn();
-            StatusCadastro = new DataGridViewComboBoxColumn();
             CadastrarItem = new GroupBox();
             comboBox1 = new ComboBox();
             DescItem = new Label();
@@ -112,6 +106,13 @@
             comboBox2 = new ComboBox();
             ItemMovimentacao = new Label();
             historicoMovimento = new GroupBox();
+            IDItensCadastrados = new DataGridViewTextBoxColumn();
+            nomeCadastro = new DataGridViewTextBoxColumn();
+            CategoriaCadastro = new DataGridViewTextBoxColumn();
+            quantidadeCadastro = new DataGridViewTextBoxColumn();
+            minimaCadastro = new DataGridViewTextBoxColumn();
+            LocalCadastro = new DataGridViewTextBoxColumn();
+            StatusCadastro = new DataGridViewComboBoxColumn();
             movimentacao.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
@@ -458,41 +459,12 @@
             // 
             dataGridView3.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView3.Columns.AddRange(new DataGridViewColumn[] { nomeCadastro, CategoriaCadastro, quantidadeCadastro, minimaCadastro, LocalCadastro, StatusCadastro });
+            dataGridView3.Columns.AddRange(new DataGridViewColumn[] { IDItensCadastrados, nomeCadastro, CategoriaCadastro, quantidadeCadastro, minimaCadastro, LocalCadastro, StatusCadastro });
             dataGridView3.Location = new Point(6, 22);
             dataGridView3.Name = "dataGridView3";
             dataGridView3.Size = new Size(805, 184);
             dataGridView3.TabIndex = 0;
-            // 
-            // nomeCadastro
-            // 
-            nomeCadastro.HeaderText = "Nome";
-            nomeCadastro.Name = "nomeCadastro";
-            // 
-            // CategoriaCadastro
-            // 
-            CategoriaCadastro.HeaderText = "Categoria";
-            CategoriaCadastro.Name = "CategoriaCadastro";
-            // 
-            // quantidadeCadastro
-            // 
-            quantidadeCadastro.HeaderText = "Quantidade";
-            quantidadeCadastro.Name = "quantidadeCadastro";
-            // 
-            // minimaCadastro
-            // 
-            minimaCadastro.HeaderText = "Qtd Mínima";
-            minimaCadastro.Name = "minimaCadastro";
-            // 
-            // LocalCadastro
-            // 
-            LocalCadastro.HeaderText = "Local";
-            LocalCadastro.Name = "LocalCadastro";
-            // 
-            // StatusCadastro
-            // 
-            StatusCadastro.HeaderText = "Status";
-            StatusCadastro.Name = "StatusCadastro";
+            dataGridView3.CellContentClick += dataGridView3_CellContentClick;
             // 
             // CadastrarItem
             // 
@@ -705,6 +677,7 @@
             Editar.TabIndex = 1;
             Editar.Text = "Editar";
             Editar.UseVisualStyleBackColor = true;
+            Editar.Click += Editar_Click;
             // 
             // Excluir
             // 
@@ -715,6 +688,7 @@
             Excluir.TabIndex = 0;
             Excluir.Text = "Excluir";
             Excluir.UseVisualStyleBackColor = true;
+            Excluir.Click += Excluir_Click;
             // 
             // tabPage2
             // 
@@ -935,6 +909,41 @@
             historicoMovimento.Visible = false;
             historicoMovimento.Enter += historicoMovimento_Enter;
             // 
+            // IDItensCadastrados
+            // 
+            IDItensCadastrados.HeaderText = "ID";
+            IDItensCadastrados.Name = "IDItensCadastrados";
+            // 
+            // nomeCadastro
+            // 
+            nomeCadastro.HeaderText = "Nome";
+            nomeCadastro.Name = "nomeCadastro";
+            // 
+            // CategoriaCadastro
+            // 
+            CategoriaCadastro.HeaderText = "Categoria";
+            CategoriaCadastro.Name = "CategoriaCadastro";
+            // 
+            // quantidadeCadastro
+            // 
+            quantidadeCadastro.HeaderText = "Quantidade";
+            quantidadeCadastro.Name = "quantidadeCadastro";
+            // 
+            // minimaCadastro
+            // 
+            minimaCadastro.HeaderText = "Qtd Mínima";
+            minimaCadastro.Name = "minimaCadastro";
+            // 
+            // LocalCadastro
+            // 
+            LocalCadastro.HeaderText = "Local";
+            LocalCadastro.Name = "LocalCadastro";
+            // 
+            // StatusCadastro
+            // 
+            StatusCadastro.HeaderText = "Status";
+            StatusCadastro.Name = "StatusCadastro";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -1031,12 +1040,6 @@
         private ComboBox comboBox1;
         private GroupBox itensCadastrados;
         private DataGridView dataGridView3;
-        private DataGridViewTextBoxColumn nomeCadastro;
-        private DataGridViewTextBoxColumn CategoriaCadastro;
-        private DataGridViewTextBoxColumn quantidadeCadastro;
-        private DataGridViewTextBoxColumn minimaCadastro;
-        private DataGridViewTextBoxColumn LocalCadastro;
-        private DataGridViewComboBoxColumn StatusCadastro;
         private Button btnNovaMovimentacao;
         private GroupBox registraMovimento;
         private GroupBox historicoMovimento;
@@ -1061,5 +1064,12 @@
         private DataGridViewTextBoxColumn responsavelMovimento;
         private DataGridViewTextBoxColumn dataMovimento;
         private Label LabelTotalItens;
+        private DataGridViewTextBoxColumn IDItensCadastrados;
+        private DataGridViewTextBoxColumn nomeCadastro;
+        private DataGridViewTextBoxColumn CategoriaCadastro;
+        private DataGridViewTextBoxColumn quantidadeCadastro;
+        private DataGridViewTextBoxColumn minimaCadastro;
+        private DataGridViewTextBoxColumn LocalCadastro;
+        private DataGridViewComboBoxColumn StatusCadastro;
     }
 }
